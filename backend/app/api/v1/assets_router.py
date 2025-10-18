@@ -9,19 +9,19 @@ from . import error_descriptions
 # Dependency Injection local to this router
 
 
-def get_Asset(
-    Asset_id: int, uow: AbstractUnitOfWork = Depends(get_unit_of_work)
+def get_asset(
+    asset_id: int, uow: AbstractUnitOfWork = Depends(get_unit_of_work)
 ) -> Asset:
     with uow:
-        Asset = uow.Assets.get(Asset_id)
+        asset = uow.assets.get(asset_id)
 
-        if Asset is None:
+        if asset is None:
             raise HTTPException(status_code=404, detail="Asset not found")
 
-        if Asset.deleted:
+        if asset.deleted:
             raise HTTPException(status_code=410, detail="Asset is gone")
 
-        return Asset
+        return asset
 
 
 # Error responses
@@ -30,73 +30,73 @@ RESPONSE_STATES = error_descriptions("Asset", _404=True, _410=True, _403=True)
 
 # Router
 
-router = APIRouter(prefix="/Assets", tags=["Assets"])
+router = APIRouter(prefix="/assets", tags=["Assets"])
 
 
 @router.get("", responses=error_descriptions("Asset", _403=True))
-def get_Assets(
+def get_assets(
     include_deleted: bool = False,
     uow: AbstractUnitOfWork = Depends(get_unit_of_work),
     token: AccessToken = Depends(resolve_access_token),
 ) -> list[Asset]:
     with uow:
-        result = uow.Assets.get_all(include_deleted)
+        result = uow.assets.get_all(include_deleted)
 
         result.sort(key=lambda x: x.name)
         return result
 
 
-@router.get("/{Asset_id}", responses=RESPONSE_STATES)
-def get_Asset(
-    Asset: Asset = Depends(get_Asset),
+@router.get("/{asset_id}", responses=RESPONSE_STATES)
+def get_asset(
+    asset: Asset = Depends(get_asset),
     token: AccessToken = Depends(resolve_access_token),
 ) -> Asset:
-    return Asset
+    return asset
 
 
-@router.get("/by_name/{Asset_name}", responses=RESPONSE_STATES)
-def get_Asset_by_name(
-    Asset_name: str,
+@router.get("/by_name/{asset_name}", responses=RESPONSE_STATES)
+def get_asset_by_name(
+    asset_name: str,
     uow: AbstractUnitOfWork = Depends(get_unit_of_work),
     token: AccessToken = Depends(resolve_access_token),
 ) -> Asset:
     with uow:
-        Asset = uow.Assets.get_by_name(Asset_name)
+        asset = uow.assets.get_by_name(asset_name)
 
-        if Asset is None:
+        if asset is None:
             raise HTTPException(status_code=404, detail="Asset not found")
 
-        if Asset.deleted:
+        if asset.deleted:
             raise HTTPException(status_code=410, detail="Asset is gone")
 
-        return Asset
+        return asset
     
-    return Asset
+    return asset
 
 
-@router.put("/{Asset_id}", responses=RESPONSE_STATES)
-def update_Asset(
+@router.put("/{asset_id}", responses=RESPONSE_STATES)
+def update_asset(
     update: AssetUpdate,
-    Asset: Asset = Depends(get_Asset),
+    asset: Asset = Depends(get_asset),
     uow: AbstractUnitOfWork = Depends(get_unit_of_work),
     token: AccessToken = Depends(resolve_access_token),
 ) -> Asset:
     with uow:
-        return uow.Assets.update(Asset, update.model_dump())
+        return uow.assets.update(asset, update.model_dump())
 
 
 @router.post("", responses=error_descriptions("Asset", _403=True))
-def create_Asset(
-    Asset: AssetCreate,
+def create_asset(
+    asset: AssetCreate,
     uow: AbstractUnitOfWork = Depends(get_unit_of_work),
     token: AccessToken = Depends(resolve_access_token),
 ) -> Asset:
     try:
         with uow:
-            data = Asset.model_dump()
+            data = asset.model_dump()
             data["deleted"] = False
 
-            return uow.Assets.create(data)
+            return uow.assets.create(data)
     except ValueError:
         raise HTTPException(status_code=422, detail="JSON data is invalid")
     except IntegrityError:
@@ -104,7 +104,7 @@ def create_Asset(
 
 
 @router.delete(
-    "/{Asset_id}",
+    "/{asset_id}",
     status_code=204,
     responses={
         204: {
@@ -116,12 +116,12 @@ def create_Asset(
     }
     | RESPONSE_STATES,
 )
-def delete_Asset(
-    Asset: Asset = Depends(get_Asset),
+def delete_asset(
+    asset: Asset = Depends(get_asset),
     uow: AbstractUnitOfWork = Depends(get_unit_of_work),
     token: AccessToken = Depends(resolve_access_token),
 ) -> None:
     with uow:
-        uow.Assets.delete(Asset)
+        uow.assets.delete(asset)
 
     return
