@@ -26,6 +26,22 @@ def generate_basic_data(session: Session):
     )
 
     session.add(
+        models.Asset(
+            name="First Asset",
+            description="First asset for testing",
+            deleted=False
+        )
+    )
+
+    session.add(
+        models.Asset(
+            name="First deleted asset",
+            description="Test asset deleted",
+            deleted=True
+        )
+    )
+
+    session.add(
         models.Workqueue(
             name="Workqueue",
             description="Queue for unittest",

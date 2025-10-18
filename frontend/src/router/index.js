@@ -56,6 +56,11 @@ const routes = [
     component: () => import('../views/CredentialsView.vue')
   },
   {
+    path: '/assets',
+    name: 'Assets',
+    component: () => import('../views/AssetsView.vue')
+  },
+  {
     path: '/administration',
     name: 'Administration.container',
     children: [

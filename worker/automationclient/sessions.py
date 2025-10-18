@@ -119,3 +119,10 @@ def get_credential(credential_id: int) -> dict:
     )
     response.raise_for_status()
     return response.json()
+
+def get_asset(asset_id: int) -> dict:
+    response = requests.get(
+        f"{automationserver_url}/assets/{asset_id}", headers=headers
+    )
+    response.raise_for_status()
+    return response.json()

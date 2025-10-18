@@ -24,6 +24,14 @@ class Credential(Base, table=True):
     created_at: datetime = Field(default_factory=lambda: datetime.now())
     updated_at: datetime = Field(default_factory=lambda: datetime.now())
 
+class Asset(Base, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    name: str = Field(unique=True)
+    data: typing.Dict = Field(default={}, sa_type=JSONB)
+    deleted: bool = False
+    created_at: datetime = Field(default_factory=lambda: datetime.now())
+    updated_at: datetime = Field(default_factory=lambda: datetime.now())
+
 
 class WorkItem(Base, table=True):
     id: int | None = Field(default=None, primary_key=True)

@@ -38,6 +38,9 @@ def get_repository(model):
 
         if model == models.Credential:
             return repositories.CredentialRepository(session)
+        
+        if model == models.Asset:
+            return repositories.AssetRepository(session)
 
         if model == models.Resource:
             return repositories.ResourceRepository(session)

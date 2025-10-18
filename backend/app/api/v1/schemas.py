@@ -116,6 +116,15 @@ class CredentialCreate(BaseModel):
 class CredentialUpdate(CredentialCreate):
     pass
 
+class AssetCreate(BaseModel):
+    name: str
+    data: Optional[Dict] = None
+
+
+
+class AssetUpdate(AssetCreate):
+    pass
+
 class ResourceCreate(BaseModel):
     name: str
     fqdn: str

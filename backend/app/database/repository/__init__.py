@@ -5,6 +5,12 @@ from .credential_repository import (
     AbstractCredentialRepository as AbstractCredentialRepository,
 )
 
+from .asset_repository import (
+    AssetRepository as AssetRepository,
+    AbstractAssetRepository as AbstractAssetRepository,
+)
+
+
 from .process_repository import (
     ProcessRepository as ProcessRepository,
     AbstractProcessRepository as AbstractProcessRepository,

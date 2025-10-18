@@ -210,6 +210,50 @@ const credentialsAPI = {
   }
 }
 
+// Assets API
+const AssetsAPI = {
+  getAssets: async (include_deleted = false) => {
+    try {
+      const response = await axios.get(`/Assets`, { params: { include_deleted } })
+      return response.data
+    } catch (error) {
+      throw new Error(`Error fetching Assets: ${error}`)
+    }
+  },
+  createAsset: async (AssetData) => {
+    try {
+      const response = await axios.post(`/Assets`, AssetData)
+      return response.data
+    } catch (error) {
+      throw new Error(`${error["response"]["data"]["detail"][0]["msg"]}`)
+    }
+  },
+  readAsset: async (Asset_id) => {
+    try {
+      const response = await axios.get(`/Assets/${Asset_id}`)
+      return response.data
+    } catch (error) {
+      throw new Error(`Error reading Asset: ${error}`)
+    }
+  },
+  updateAsset: async (Asset_id, AssetData) => {
+    try {
+      const response = await axios.put(`/Assets/${Asset_id}`, AssetData)
+      return response.data
+    } catch (error) {
+      throw new Error(`${error["response"]["data"]["detail"][0]["msg"]}`)
+    }
+  },
+  deleteAsset: async (Asset_id) => {
+    try {
+      const response = await axios.delete(`/Assets/${Asset_id}`)
+      return response.data
+    } catch (error) {
+      throw new Error(`Error deleting Asset: ${error}`)
+    }
+  }
+}
+
 const resourcesAPI = {
   getResources: async (include_deleted = false) => {
     try {
