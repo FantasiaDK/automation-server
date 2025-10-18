@@ -214,42 +214,42 @@ const credentialsAPI = {
 const AssetsAPI = {
   getAssets: async (include_deleted = false) => {
     try {
-      const response = await axios.get(`/Assets`, { params: { include_deleted } })
+      const response = await axios.get(`/assets`, { params: { include_deleted } })
       return response.data
     } catch (error) {
-      throw new Error(`Error fetching Assets: ${error}`)
+      throw new Error(`Error fetching assets: ${error}`)
     }
   },
-  createAsset: async (AssetData) => {
+  createAsset: async (assetData) => {
     try {
-      const response = await axios.post(`/Assets`, AssetData)
+      const response = await axios.post(`/assets`, assetData)
       return response.data
     } catch (error) {
       throw new Error(`${error["response"]["data"]["detail"][0]["msg"]}`)
     }
   },
-  readAsset: async (Asset_id) => {
+  readAsset: async (asset_id) => {
     try {
-      const response = await axios.get(`/Assets/${Asset_id}`)
+      const response = await axios.get(`/assets/${asset_id}`)
       return response.data
     } catch (error) {
-      throw new Error(`Error reading Asset: ${error}`)
+      throw new Error(`Error reading asset: ${error}`)
     }
   },
-  updateAsset: async (Asset_id, AssetData) => {
+  updateAsset: async (asset_id, assetData) => {
     try {
-      const response = await axios.put(`/Assets/${Asset_id}`, AssetData)
+      const response = await axios.put(`/assets/${asset_id}`, assetData)
       return response.data
     } catch (error) {
       throw new Error(`${error["response"]["data"]["detail"][0]["msg"]}`)
     }
   },
-  deleteAsset: async (Asset_id) => {
+  deleteAsset: async (asset_id) => {
     try {
-      const response = await axios.delete(`/Assets/${Asset_id}`)
+      const response = await axios.delete(`/assets/${Asset_id}`)
       return response.data
     } catch (error) {
-      throw new Error(`Error deleting Asset: ${error}`)
+      throw new Error(`Error deleting asset: ${error}`)
     }
   }
 }

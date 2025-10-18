@@ -1257,13 +1257,13 @@
         }
       }
     },
-    "/api/credentials": {
+    "/api/assets": {
       "get": {
         "tags": [
-          "Credentials"
+          "Assets"
         ],
-        "summary": "Get Credentials",
-        "operationId": "get_credentials_api_credentials_get",
+        "summary": "Get Asset",
+        "operationId": "get_assets_api_assets_get",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -1289,9 +1289,9 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Credential"
+                    "$ref": "#/components/schemas/Asset"
                   },
-                  "title": "Response Get Credentials Api Credentials Get"
+                  "title": "Response Get Asset Api Asset Get"
                 }
               }
             }
@@ -1310,10 +1310,10 @@
       },
       "post": {
         "tags": [
-          "Credentials"
+          "Asset"
         ],
         "summary": "Create Credential",
-        "operationId": "create_credential_api_credentials_post",
+        "operationId": "create_assets_api_assets_post",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -1324,7 +1324,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CredentialCreate"
+                "$ref": "#/components/schemas/AssetCreate"
               }
             }
           }
@@ -1335,7 +1335,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Credential"
+                  "$ref": "#/components/schemas/Asset"
                 }
               }
             }
@@ -1353,13 +1353,13 @@
         }
       }
     },
-    "/api/Assets/{Asset_id}": {
+    "/api/assets/{asset_id}": {
       "get": {
         "tags": [
           "Assets"
         ],
         "summary": "Get Asset",
-        "operationId": "get_Asset_api_Assets__Asset_id__get",
+        "operationId": "get_asset_api_assets__asset_id__get",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -1367,7 +1367,7 @@
         ],
         "parameters": [
           {
-            "name": "Asset_id",
+            "name": "asset_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1404,7 +1404,7 @@
           "Assets"
         ],
         "summary": "Update Asset",
-        "operationId": "update_Asset_api_Assets__Asset_id__put",
+        "operationId": "update_asset_api_assets__Asset_id__put",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -1412,7 +1412,7 @@
         ],
         "parameters": [
           {
-            "name": "Asset_id",
+            "name": "asset_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1459,7 +1459,7 @@
           "Assets"
         ],
         "summary": "Delete Asset",
-        "operationId": "delete_Asset_api_Assets__Asset_id__delete",
+        "operationId": "delete_asset_api_assets__asset_id__delete",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -1467,7 +1467,7 @@
         ],
         "parameters": [
           {
-            "name": "Asset_id",
+            "name": "asset_id",
             "in": "path",
             "required": true,
             "schema": {
