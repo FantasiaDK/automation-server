@@ -211,7 +211,7 @@ const credentialsAPI = {
 }
 
 // Assets API
-const AssetsAPI = {
+const assetsAPI = {
   getAssets: async (include_deleted = false) => {
     try {
       const response = await axios.get(`/assets`, { params: { include_deleted } })

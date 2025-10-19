@@ -76,7 +76,7 @@ export default {
         }
 
         this.AssetData.data = data;
-        await AssetsAPI.updateAsset(this.Asset.id, this.AssetData);
+        await assetsAPI.updateAsset(this.Asset.id, this.AssetData);
         alertStore.addAlert({
           message: "Asset updated successfully",
           type: "success"
