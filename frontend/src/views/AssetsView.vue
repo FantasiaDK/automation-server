@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { AssetsAPI } from "@/services/automationserver";
+import { assetsAPI } from "@/services/automationserver";
 import EditAsset from "@/components/EditAsset.vue";
 import CreateAsset from "@/components/CreateAsset.vue";
 import ContentCard from "@/components/ContentCard.vue";
@@ -104,7 +104,7 @@ export default {
     },
     async fetchAssets() {
       try {
-        this.Assets = await AssetsAPI.getAssets();
+        this.Assets = await assetsAPI.getAssets();
       } catch (error) {
         console.error(error);
         alertStore.addAlert({ type: "error", message: error });
@@ -116,7 +116,7 @@ export default {
     async deleteAsset(AssetId) {
       if (confirm("Are you sure you want to delete this Asset?")) {
         try {
-          await AssetsAPI.deleteAsset(AssetId);
+          await assetsAPI.deleteAsset(AssetId);
           alertStore.addAlert({ type: "succes", message: "Asset deleted successfully" });
           this.fetchAssets();
         } catch (error) {

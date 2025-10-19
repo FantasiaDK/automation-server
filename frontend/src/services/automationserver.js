@@ -246,7 +246,7 @@ const assetsAPI = {
   },
   deleteAsset: async (asset_id) => {
     try {
-      const response = await axios.delete(`/assets/${Asset_id}`)
+      const response = await axios.delete(`/assets/${asset_id}`)
       return response.data
     } catch (error) {
       throw new Error(`Error deleting asset: ${error}`)
@@ -480,5 +480,6 @@ export {
   auditLogsAPI,
   triggersAPI,
   workitemsApi,
-  accessTokensApi
+  accessTokensApi,
+  assetsAPI
 }

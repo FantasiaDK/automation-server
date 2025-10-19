@@ -36,7 +36,7 @@
 
 
 <script>
-import { AssetsAPI } from "@/services/automationserver";
+import { assetsAPI } from "@/services/automationserver";
 import { useAlertStore } from "@/stores/alertStore";
 
 const alertStore = useAlertStore();
@@ -66,7 +66,7 @@ export default {
             return;
           }
         }
-        await AssetsAPI.createAsset(this.AssetData);
+        await assetsAPI.createAsset(this.AssetData);
         alertStore.addAlert({
           message: "Asset created successfully",
           type: "success"
