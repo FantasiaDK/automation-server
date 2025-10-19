@@ -14,5 +14,12 @@
     "files.associations": {
         "*.py": "python"
     },
-    "terminal.integrated.cwd": "${workspaceFolder}/backend"
+    "terminal.integrated.cwd": "${workspaceFolder}/backend",
+    "python-envs.pythonProjects": [
+        {
+            "path": "backend",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+        }
+    ]
 }
