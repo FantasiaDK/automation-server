@@ -14,6 +14,7 @@ from app.api.v1.session_router import router as v1_session_router
 from app.api.v1.trigger_router import router as v1_trigger_router
 from app.api.v1.audit_log_router import router as v1_audit_log_router
 from app.api.v1.accesstoken_router import router as v1_accesstoken_router
+from app.api.v1.asset_router import router as v1_assets_router
 
 from app.api.token_router import router as token_router
 from app.api.health_router import router as health_router
@@ -67,6 +68,7 @@ app.add_middleware(
 
 app.include_router(v1_accesstoken_router, prefix="")
 app.include_router(v1_credentials_router, prefix="")
+app.include_router(v1_assets_router, prefix="")
 app.include_router(v1_process_router, prefix="")
 app.include_router(v1_resource_router, prefix="")
 app.include_router(v1_session_router, prefix="")
