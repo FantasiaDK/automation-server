@@ -9,8 +9,7 @@ from . import error_descriptions
 # Dependency Injection local to this router
 
 
-def get_asset(
-    asset_id: int, uow: AbstractUnitOfWork = Depends(get_unit_of_work)
+def get_asset(asset_id: int, uow: AbstractUnitOfWork = Depends(get_unit_of_work)
 ) -> Asset:
     with uow:
         asset = uow.assets.get(asset_id)
