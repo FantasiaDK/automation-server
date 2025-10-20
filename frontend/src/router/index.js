@@ -56,7 +56,7 @@ const routes = [
     component: () => import('../views/CredentialsView.vue')
   },
   {
-    path: '/assets',
+    path: '/processassets',
     name: 'Assets',
     component: () => import('../views/AssetsView.vue')
   },

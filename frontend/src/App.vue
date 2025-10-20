@@ -23,6 +23,8 @@
           active-class="nav-link-active">Workqueues</router-link>
         <router-link class="block py-2.5 px-4 rounded hover:bg-gray-700" to="/credentials"
           active-class="nav-link-active">Credentials</router-link>
+        <router-link class="block py-2.5 px-4 rounded hover:bg-gray-700" to="/processassets"
+          active-class="nav-link-active">Process Assets</router-link>
         <router-link class="block py-2.5 px-4 rounded hover:bg-gray-700" to="/administration"
           active-class="nav-link-active">Administration</router-link>
       </nav>
