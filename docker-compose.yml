@@ -88,10 +88,6 @@ services:
     <<: *worker-template
     hostname: worker-02
 
-  worker03:
-    <<: *worker-template
-    hostname: worker-03
-
   # Development tools (optional)
   adminer:
     image: adminer:4.8.1

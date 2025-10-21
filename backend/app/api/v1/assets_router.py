@@ -56,13 +56,11 @@ def get_asset(
 @router.get("/by_name/{asset_name}", responses=RESPONSE_STATES)
 def get_asset_by_name(
     asset_name: str,
-    environment: str | None = None,  # optional query param: ?environment=prod
     uow: AbstractUnitOfWork = Depends(get_unit_of_work),
     token: AccessToken = Depends(resolve_access_token),
 ) -> Asset:
-    effective_env = environment if environment is not None else ""
     with uow:
-        asset = uow.assets.get_by_name_or_name_with_environment(asset_name, effective_env)
+        asset = uow.assets.get_by_name(asset_name)
 
         if asset is None:
             raise HTTPException(status_code=404, detail="Asset not found")
@@ -73,6 +71,7 @@ def get_asset_by_name(
         return asset
     
     return asset
+
 
 @router.put("/{asset_id}", responses=RESPONSE_STATES)
 def update_asset(
